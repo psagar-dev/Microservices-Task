@@ -8,6 +8,30 @@ This document provides details on testing various services after running the `do
 ## Services and Endpoints
 
 ### **User Service**
+Dockerfile
+```
+FROM node:latest
+
+WORKDIR /app
+
+COPY package*.json ./
+COPY . .
+
+RUN npm install
+
+EXPOSE 3000
+
+CMD ["node", "app.js"]
+```
+You can make buil successfully or not
+
+```
+docker image build -t user-service .
+```
+You can run container
+```
+docker container run -d --name user-service -p 3000:300 user-service
+```
 - **Base URL:** `http://localhost:3000`
 - **Endpoints:**
   - **List Users:**  
