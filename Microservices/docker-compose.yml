@@ -12,6 +12,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
+    networks:
+      - microservice
 
   product-service:
     build:
@@ -26,6 +28,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
+    networks:
+      - microservice
 
   order-service:
     build:
@@ -40,6 +44,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
+    networks:
+      - microservice
 
   gateway-service:
     build:
@@ -58,3 +64,9 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
+    networks:
+      - microservice
+
+networks:
+  microservice:
+    external: true
