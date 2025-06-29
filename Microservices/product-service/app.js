@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 app.get('/health', (req, res) => {
-  res.json({ status: 'Product Service is healthy' });
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  res.json({ status: `${NODE_ENV} - Product Service is healthy` });
 });
 
 app.get('/products', (req, res) => {

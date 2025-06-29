@@ -2,12 +2,14 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 app.use(express.json());
-const port = 3002;
+const port = process.env.PORT || 3002;
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const orders = [];
 
 app.get('/health', (req, res) => {
-  res.json({ status: 'Order Service is healthy' });
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  res.json({ status: `${NODE_ENV} - Order Service is healthy` });
 });
 
 app.get('/orders', (req, res) => {
